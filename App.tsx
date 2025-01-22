@@ -19,11 +19,12 @@ function App(): React.JSX.Element {
   const [ranbackgroundColor, setranbackgroundColor] = useState('#ffffff')
   const [rancirleColor, setrancirleColor] = useState('#FF9800')
   const [ranSquareColor, setranSquareColor] = useState('#FF9800')
+  const [ranTriangleColor, setranTriangleColor] = useState('#f50057')
 
   const generateColor = () => {
     const hexRange = "0123456789ABCDEF"
     let colors = [];
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < 4; j++) {
       let color = "#"
       for (let i = 0; i < 6; i++) {
         color += hexRange[Math.floor(Math.random() * 16 )]
@@ -33,6 +34,7 @@ function App(): React.JSX.Element {
     setranbackgroundColor(colors[0])
     setrancirleColor(colors[1])
     setranSquareColor(colors[2])
+    setranTriangleColor(colors[3])
   }
 
   return (
@@ -40,8 +42,8 @@ function App(): React.JSX.Element {
       <StatusBar backgroundColor={ranbackgroundColor}/>
       <View style={[styles.container, {backgroundColor: ranbackgroundColor}]}>
         <View style={[styles.circleShape, {backgroundColor: rancirleColor}]} />
-        {/* <View style={[styles.pentagon, {backgroundColor: ranPantagonColor}]} />
-        <View style={[styles.triangleShape, {backgroundColor: ranTriangleColor}]} /> */}
+        {/* <View style={[styles.pentagon, {backgroundColor: ranPantagonColor}]} /> */}
+        <View style={[styles.triangleShape, {borderBottomColor: ranTriangleColor}]} />
         <View style={[styles.squareShape, {backgroundColor: ranSquareColor}]} />
         <TouchableOpacity
           onPress={generateColor}
@@ -82,6 +84,20 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 50,
     top: 200,
+  },
+  triangleShape: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderLeftWidth: 70,
+    borderRightWidth: 70,
+    borderBottomWidth: 140,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    position: 'absolute',
+    left: 50,
+    bottom: 200,
   }
 });
 
